@@ -1,6 +1,7 @@
 package entities.to;
 
 public class ClienteTO {
+	private Integer code;
 	private String nome;
 	private String email;
 	private String telefone;
@@ -13,6 +14,14 @@ public class ClienteTO {
 	
 	public static ClienteTO getInstance() {
 		return cto;
+	}
+
+	public Integer getCode() {
+		return code;
+	}
+
+	public void setCode(Integer code) {
+		this.code = code;
 	}
 	
 	public String getNome() {
