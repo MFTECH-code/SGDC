@@ -60,7 +60,7 @@ public class ClienteDaoImpl implements ClienteDao {
 	}
 
 	@Override
-	public ClienteTO getCliente(Integer code) throws SQLException {
+	public ClienteTO getCliente(int code) throws SQLException {
 		ClienteTO cliente = ClienteTO.getInstance();
 		String sql = "SELECT * FROM CLIENTE WHERE CODIGO = ?";
 		PreparedStatement ps = conn.prepareStatement(sql);
@@ -82,13 +82,13 @@ public class ClienteDaoImpl implements ClienteDao {
 	}
 
 	@Override
-	public void setCliente(ClienteTO cliente) {
+	public void setCliente(int code) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void deleteCliente(ClienteTO cliente) {
+	public void deleteCliente(int code) {
 		// TODO Auto-generated method stub
 		
 	}

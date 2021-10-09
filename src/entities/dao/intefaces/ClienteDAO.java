@@ -10,9 +10,9 @@ public interface ClienteDao {
 	
 	public List<ClienteTO> getClientes()  throws SQLException;
 	
-	public ClienteTO getCliente(Integer code)  throws SQLException;
+	public ClienteTO getCliente(int code)  throws SQLException;
 	
-	public void setCliente(ClienteTO cliente)  throws SQLException;
+	public void setCliente(int code)  throws SQLException;
 	
-	public void deleteCliente(ClienteTO cliente)  throws SQLException;
+	public void deleteCliente(int code)  throws SQLException;
 }
