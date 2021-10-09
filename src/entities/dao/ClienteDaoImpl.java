@@ -12,7 +12,7 @@ import entities.dao.intefaces.ClienteDao;
 import entities.to.ClienteTO;
 
 public class ClienteDaoImpl implements ClienteDao {
-	private String strConn = "jdbc:mysql://localhost:3306/FMNTDB";
+	private String strConn = "jdbc:mysql://localhost:3306/FMNTDB?useLegacyDatetimeCode=false&serverTimezone=UTC";
 	private Connection conn;
 	
 	

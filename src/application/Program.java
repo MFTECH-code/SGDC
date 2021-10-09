@@ -1,16 +1,30 @@
 package application;
 
+import java.sql.SQLException;
+import java.util.Scanner;
+
+import entities.bo.ClienteBO;
 import entities.to.ClienteTO;
 
 public class Program {
-	public static void main(String[] args) {
+	private static Scanner sc = new Scanner(System.in);
+	
+	public static void main(String[] args) throws SQLException {
+		
+		ClienteBO bo = new ClienteBO();
+		bo.create(cadastro());
+	}
+	
+	public static ClienteTO cadastro() {
 		ClienteTO cliente = ClienteTO.getInstance();
-		ClienteTO cliente1 = ClienteTO.getInstance();
-		ClienteTO cliente2 = ClienteTO.getInstance();
+		System.out.println("- - - - - CADASTRO DE CLIENTE - - - - -");
+		System.out.print("NOME: ");
+		cliente.setNome(sc.next());
+		System.out.print("EMAIL: ");
+		cliente.setEmail(sc.next());
+		System.out.print("TELEFONE: ");
+		cliente.setTelefone(sc.next());
 		
-		System.out.println(cliente);
-		System.out.println(cliente1);
-		System.out.println(cliente2);
-		
+		return cliente;
 	}
 }
