@@ -15,13 +15,48 @@ public class Program {
 		bo.create(cadastro());
 		pesquisaCliente();
 		removerCliente();
-		*/
-		
 		atualizarDadosCliente();
 		mostraClientes();
+		*/
+		while(true) {
+			int selection = menu();
+			while (selection < 1 && selection > 6) {
+				System.out.println("OPÇÃO DIGITADA É INVÁLIDA...");
+				selection = menu();
+			}
+			
+			if (selection == 1) {
+				cadastro();
+			} else if (selection == 2) {
+				mostraClientes();
+			} else if (selection == 3) {
+				pesquisaCliente();
+			} else if (selection == 4) {
+				atualizarDadosCliente();
+			} else if (selection == 5) {
+				removerCliente();
+			} else {
+				break;
+			}
+		}
+		
 	}
 	
-	public static ClienteTO cadastro() {
+	public static int menu() {
+		System.out.println("- - - - - SGDC: SISTEMA GERENCIADOR DE CLIENTES - - - - -");
+		System.out.println("1 - CADASTRAR CLIENTE");
+		System.out.println("2 - LISTAR CLIENTES CADASTRADOS");
+		System.out.println("3 - PESQUISAR CLIENTE");
+		System.out.println("4 - ATUALIZAR DADOS DE UM CLIENTE");
+		System.out.println("5 - REMOVER CLIENTE");
+		System.out.println("6 - SAIR");
+		
+		System.out.print("SELECIONE -> ");
+		return sc.nextInt();
+	}
+	
+	public static void cadastro() throws SQLException {
+		ClienteBO bo = new ClienteBO();
 		ClienteTO cliente = ClienteTO.getInstance();
 		System.out.println("- - - - - CADASTRO DE CLIENTE - - - - -");
 		System.out.print("NOME: ");
@@ -31,7 +66,8 @@ public class Program {
 		System.out.print("TELEFONE: ");
 		cliente.setTelefone(sc.next());
 		
-		return cliente;
+		bo.create(cliente);
+		System.out.println("CLIENTE CADASTRADO COM SUCESSO!");
 	}
 	
 	public static void mostraClientes() throws SQLException {
@@ -44,9 +80,14 @@ public class Program {
 		ClienteBO bo = new ClienteBO();
 		System.out.println("- - - - - BUSCA DE CLIENTES - - - - -");
 		System.out.print("DIGITE O CÓDIGO DO CLIENTE QUE DESEJA BUSCAR: ");
-		ClienteTO cliente = bo.buscaCliente(sc.nextInt());
+		int code = sc.nextInt();
+		ClienteTO cliente = bo.buscaCliente(code);
 		System.out.println("RESULTADO DA PESQUISA:");
-		System.out.println(cliente);
+		if (cliente.getCode() == null) {
+			System.out.println("CLIENTE INEXISTENTE...");
+		}else {
+			System.out.println(cliente);			
+		}
 	}
 	
 	public static void atualizarDadosCliente() throws SQLException {
