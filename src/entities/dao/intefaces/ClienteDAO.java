@@ -1,17 +1,18 @@
 package entities.dao.intefaces;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import entities.to.ClienteTO;
 
-public interface ClienteDAO {
-	public void createCliente(ClienteTO cliente);
+public interface ClienteDao {
+	public void createCliente(ClienteTO cliente)  throws SQLException;
 	
-	public List<ClienteTO> getClientes();
+	public List<ClienteTO> getClientes()  throws SQLException;
 	
-	public ClienteTO getCliente(Integer code);
+	public ClienteTO getCliente(Integer code)  throws SQLException;
 	
-	public void setCliente(ClienteTO cliente);
+	public void setCliente(ClienteTO cliente)  throws SQLException;
 	
-	public void deleteCliente(ClienteTO cliente);
+	public void deleteCliente(ClienteTO cliente)  throws SQLException;
 }
