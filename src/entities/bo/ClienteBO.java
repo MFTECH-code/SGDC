@@ -17,4 +17,9 @@ public class ClienteBO {
 		ClienteDaoImpl dao = new ClienteDaoImpl();
 		return dao.getClientes();
 	}
+	
+	public ClienteTO buscaCliente(int code) throws SQLException {
+		ClienteDaoImpl dao = new ClienteDaoImpl();
+		return dao.getCliente(code);
+	}
 }

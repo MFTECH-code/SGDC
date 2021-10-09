@@ -13,9 +13,10 @@ public class Program {
 		/*
 		ClienteBO bo = new ClienteBO();
 		bo.create(cadastro());
-		*/
-		
 		mostraClientes();
+		*/
+		pesquisaCliente();
+		
 	}
 	
 	public static ClienteTO cadastro() {
@@ -33,6 +34,16 @@ public class Program {
 	
 	public static void mostraClientes() throws SQLException {
 		ClienteBO bo = new ClienteBO();
+		System.out.println("- - - - - LISTAGEM DE CLIENTES - - - - -");
 		bo.listarClientes().forEach(cliente -> System.out.println(cliente));
+	}
+	
+	public static void pesquisaCliente() throws SQLException {
+		ClienteBO bo = new ClienteBO();
+		System.out.println("- - - - - BUSCA DE CLIENTES - - - - -");
+		System.out.print("DIGITE O CÓDIGO DO CLIENTE QUE DESEJA BUSCAR: ");
+		ClienteTO cliente = bo.buscaCliente(sc.nextInt());
+		System.out.println("RESULTADO DA PESQUISA:");
+		System.out.println(cliente);
 	}
 }

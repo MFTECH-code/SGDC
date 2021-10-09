@@ -56,7 +56,7 @@ public class ClienteTO {
 		return "[nome:" + this.nome 
 				+ ", email:" + this.email
 				+", telefone:" + this.telefone
-				+ "]";
+				+ ", codigo:" + this.code + "]";
 	}
 
 }

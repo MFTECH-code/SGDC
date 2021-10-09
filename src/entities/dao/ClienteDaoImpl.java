@@ -60,9 +60,25 @@ public class ClienteDaoImpl implements ClienteDao {
 	}
 
 	@Override
-	public ClienteTO getCliente(Integer code) {
-		// TODO Auto-generated method stub
-		return null;
+	public ClienteTO getCliente(Integer code) throws SQLException {
+		ClienteTO cliente = ClienteTO.getInstance();
+		String sql = "SELECT * FROM CLIENTE WHERE CODIGO = ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		
+		ps.setInt(1, code);
+		ps.execute();
+		
+		while (ps.getResultSet().next()) {
+			cliente.setCode(ps.getResultSet().getInt("CODIGO"));
+			cliente.setNome(ps.getResultSet().getString("NOME"));
+			cliente.setEmail(ps.getResultSet().getString("EMAIL"));
+			cliente.setTelefone(ps.getResultSet().getString("TELEFONE"));			
+		}
+		
+		
+		ps.close();;
+		return cliente;
+		
 	}
 
 	@Override
