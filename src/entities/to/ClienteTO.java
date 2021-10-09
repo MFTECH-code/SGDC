@@ -6,13 +6,16 @@ public class ClienteTO {
 	private String email;
 	private String telefone;
 	
-	private static ClienteTO cto = new ClienteTO();
+	private static ClienteTO cto;
 	
-	private ClienteTO() {
+	public ClienteTO() {
 		
 	}
 	
 	public static ClienteTO getInstance() {
+		if (cto == null) {
+			cto = new ClienteTO();
+		}
 		return cto;
 	}
 

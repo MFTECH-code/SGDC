@@ -2,7 +2,9 @@ package entities.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
@@ -38,9 +40,23 @@ public class ClienteDaoImpl implements ClienteDao {
 	}
 
 	@Override
-	public List<ClienteTO> getClientes() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ClienteTO> getClientes() throws SQLException {
+		List<ClienteTO> clientes = new ArrayList<>();
+		String sql = "SELECT * FROM CLIENTE";
+		ResultSet rs = conn.createStatement().executeQuery(sql);
+		
+		while(rs.next()) {
+			ClienteTO cliente = new ClienteTO();
+			cliente.setCode(rs.getInt("CODIGO"));
+			cliente.setNome(rs.getString("NOME"));
+			cliente.setEmail(rs.getString("EMAIL"));
+			cliente.setTelefone(rs.getString("TELEFONE"));
+			
+			clientes.add(cliente);
+		}
+		
+		rs.close();
+		return clientes;
 	}
 
 	@Override

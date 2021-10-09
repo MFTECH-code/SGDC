@@ -10,9 +10,12 @@ public class Program {
 	private static Scanner sc = new Scanner(System.in);
 	
 	public static void main(String[] args) throws SQLException {
-		
+		/*
 		ClienteBO bo = new ClienteBO();
 		bo.create(cadastro());
+		*/
+		
+		mostraClientes();
 	}
 	
 	public static ClienteTO cadastro() {
@@ -26,5 +29,10 @@ public class Program {
 		cliente.setTelefone(sc.next());
 		
 		return cliente;
+	}
+	
+	public static void mostraClientes() throws SQLException {
+		ClienteBO bo = new ClienteBO();
+		bo.listarClientes().forEach(cliente -> System.out.println(cliente));
 	}
 }
