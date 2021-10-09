@@ -82,9 +82,17 @@ public class ClienteDaoImpl implements ClienteDao {
 	}
 
 	@Override
-	public void setCliente(int code) throws SQLException {
+	public void setCliente(int code, ClienteTO cliente) throws SQLException {
+		String sql = "UPDATE CLIENTE SET NOME=?, EMAIL=?, TELEFONE=? WHERE CODIGO = ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
 		
+		ps.setString(1, cliente.getNome());
+		ps.setString(2, cliente.getEmail());
+		ps.setString(3, cliente.getTelefone());
+		ps.setInt(4, code);
 		
+		ps.execute();
+		ps.close();
 	}
 
 	@Override

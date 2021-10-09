@@ -14,9 +14,10 @@ public class Program {
 		ClienteBO bo = new ClienteBO();
 		bo.create(cadastro());
 		pesquisaCliente();
+		removerCliente();
 		*/
 		
-		removerCliente();
+		atualizarDadosCliente();
 		mostraClientes();
 	}
 	
@@ -46,6 +47,36 @@ public class Program {
 		ClienteTO cliente = bo.buscaCliente(sc.nextInt());
 		System.out.println("RESULTADO DA PESQUISA:");
 		System.out.println(cliente);
+	}
+	
+	public static void atualizarDadosCliente() throws SQLException {
+		ClienteBO bo = new ClienteBO();
+		System.out.println("- - - - - ATUALIZAÇÃO CADASTRAL DE CLIENTES - - - - -");
+		System.out.print("DIGITE O CÓDIGO DO CLIENTE QUE DESEJA ATUALIZAR: ");
+		int code = sc.nextInt();
+		System.out.println("O CLIENTE QUE VOCÊ DESEJA ATUALIZAR É ESSE? -> " + bo.buscaCliente(code));
+		System.out.print("[S/N]: ");
+		char decisao = sc.next().toUpperCase().charAt(0);
+		while (decisao != 'S' && decisao != 'N') {
+			System.out.println("DIGITE SIM OU NÃO...");
+			decisao = sc.next().toUpperCase().charAt(0);
+		}
+		
+		if (decisao == 'S') {
+			ClienteTO cliente = ClienteTO.getInstance();
+			System.out.print("NOVO NOME: ");
+			cliente.setNome(sc.next());
+			System.out.print("NOVO EMAIL: ");
+			cliente.setEmail(sc.next());
+			System.out.print("NOVO TELEFONE: ");
+			cliente.setTelefone(sc.next());
+			
+			bo.atualizaCliente(code, cliente);
+			System.out.println("DADOS ATUALIZADOS COM SUCESSO!");
+		} else {
+			System.out.println("OPERAÇÃO CANCELADA!");
+		}
+		
 	}
 	
 	public static void removerCliente() throws SQLException {

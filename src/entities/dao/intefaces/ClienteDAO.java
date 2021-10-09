@@ -12,7 +12,7 @@ public interface ClienteDao {
 	
 	public ClienteTO getCliente(int code)  throws SQLException;
 	
-	public void setCliente(int code)  throws SQLException;
+	public void setCliente(int code, ClienteTO cliente)  throws SQLException;
 	
 	public void deleteCliente(int code)  throws SQLException;
 }
