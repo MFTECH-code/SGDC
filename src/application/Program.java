@@ -13,10 +13,11 @@ public class Program {
 		/*
 		ClienteBO bo = new ClienteBO();
 		bo.create(cadastro());
-		mostraClientes();
-		*/
 		pesquisaCliente();
+		*/
 		
+		removerCliente();
+		mostraClientes();
 	}
 	
 	public static ClienteTO cadastro() {
@@ -45,5 +46,26 @@ public class Program {
 		ClienteTO cliente = bo.buscaCliente(sc.nextInt());
 		System.out.println("RESULTADO DA PESQUISA:");
 		System.out.println(cliente);
+	}
+	
+	public static void removerCliente() throws SQLException {
+		ClienteBO bo = new ClienteBO();
+		System.out.println("- - - - - REMOVER CLIENTE - - - - -");
+		System.out.print("DIGITE O CÓDIGO DO CLIENTE QUE DESEJA REMOVER: ");
+		int code = sc.nextInt();
+		System.out.println("O CLIENTE QUE VOCÊ DESEJA REMOVER É ESSE? -> " + bo.buscaCliente(code));
+		System.out.print("[S/N]: ");
+		char decisao = sc.next().toUpperCase().charAt(0);
+		while (decisao != 'S' && decisao != 'N') {
+			System.out.println("DIGITE SIM OU NÃO...");
+			decisao = sc.next().toUpperCase().charAt(0);
+		}
+		
+		if (decisao == 'S') {
+			bo.excluiCliente(code);
+			System.out.println("USUÁRIO REMOVIDO COM SUCESSO!");
+		} else {
+			System.out.println("OPERAÇÃO CANCELADA!");
+		}
 	}
 }

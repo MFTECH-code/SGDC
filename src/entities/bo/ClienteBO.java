@@ -22,4 +22,9 @@ public class ClienteBO {
 		ClienteDaoImpl dao = new ClienteDaoImpl();
 		return dao.getCliente(code);
 	}
+	
+	public void excluiCliente(int code) throws SQLException {
+		ClienteDaoImpl dao = new ClienteDaoImpl();
+		dao.deleteCliente(code);
+	}
 }

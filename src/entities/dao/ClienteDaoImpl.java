@@ -82,14 +82,20 @@ public class ClienteDaoImpl implements ClienteDao {
 	}
 
 	@Override
-	public void setCliente(int code) {
-		// TODO Auto-generated method stub
+	public void setCliente(int code) throws SQLException {
+		
 		
 	}
 
 	@Override
-	public void deleteCliente(int code) {
-		// TODO Auto-generated method stub
+	public void deleteCliente(int code) throws SQLException {
+		String sql = "DELETE FROM CLIENTE WHERE CODIGO = ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		
+		ps.setInt(1, code);
+		
+		ps.execute();
+		ps.close();
 		
 	}
 
